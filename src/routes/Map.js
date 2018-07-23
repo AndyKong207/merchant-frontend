@@ -161,10 +161,10 @@ class Map extends Component {
               <p style={pStyle}>{`${merchant.province} ${merchant.city} ${merchant.district} ${merchant.street_address}`}</p>
               <Row>
                 <Col span={24}>
-                  <DescriptionItem title="店主" content={merchant.contact_name} />{' '}
+                  <DescriptionItem title="店主" content={'授权可见'} />
                 </Col>
                 <Col span={24}>
-                  <DescriptionItem title="联系方式" content={merchant.contact_phone} />
+                  <DescriptionItem title="联系方式" content={'***********'} />
                 </Col>
               </Row>
             </Drawer>
