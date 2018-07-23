@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Drawer, Spin, Col, Row } from 'antd'
 import { getMapObj } from '../components/Map/AMap'
-import { query } from '../services/merchant'
+import { query, queryById } from '../services/merchant'
 
 const AMap = window.AMap
 
@@ -63,6 +63,7 @@ class Map extends Component {
 
     if (this.map === null) {
       this.map = getMapObj()
+      this.map.setCity('苏州')
       this.map.plugin(["AMap.ToolBar"], () => {
         //加载工具条
         const tool = new AMap.ToolBar()
@@ -87,8 +88,8 @@ class Map extends Component {
 
   _onMarkerEvent = async (e) => {
     const merchant = e.target.F.extData
-    // console.log(e.target.F)
-    this.showDrawer(merchant)
+    const result = await queryById(merchant.id)
+    this.showDrawer(result.data)
   }
 
 
@@ -129,7 +130,6 @@ class Map extends Component {
   }
 
   showDrawer = (merchant) => {
-    console.log(merchant)
     this.setState({
       visible: true,
       merchant
